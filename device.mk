@@ -184,6 +184,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.universal7870
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprintd \
+    fingerprint.exynos5
+
 # Root
 PRODUCT_PACKAGES += \
     su
