@@ -187,7 +187,8 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd \
-    fingerprint.exynos5
+    fingerprint.exynos5 \
+    libbauthtzcommon_shim
 
 # Root
 PRODUCT_PACKAGES += \
