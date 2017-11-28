@@ -19,10 +19,4 @@
 
 #define BTM_DEF_LOCAL_NAME "Samsung Galaxy J7 Prime"
 
-#define BLUETOOTH_QTI_SW TRUE
-#define BLE_VND_INCLUDED   TRUE
-
-#define BTM_WBS_INCLUDED TRUE       /* Enable WBS */
-#define BTIF_HF_WBS_PREFERRED TRUE  /* Use WBS    */
-
 #endif
