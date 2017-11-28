@@ -51,6 +51,8 @@ BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+#BOARD_KERNEL_SEPARATED_DT := true
+#TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 
 # Kernel
 TARGET_KERNEL_ARCH := arm64
@@ -63,7 +65,6 @@ TARGET_USES_UNCOMPRESSED_KERNEL := true
 TARGET_KERNEL_SOURCE := kernel/samsung/on7xelte
 TARGET_KERNEL_CONFIG := lineage-on7xelte_defconfig
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
-
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 33554432
