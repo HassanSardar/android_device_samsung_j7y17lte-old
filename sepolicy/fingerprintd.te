@@ -1,6 +1,15 @@
-allow fingerprintd tee_device:chr_file { open read write ioctl };
-allow fingerprintd secmem_device:chr_file { open read write ioctl };
-allow fingerprintd vfs_device:chr_file { open read write ioctl };
-allow fingerprintd biometrics_data_file:dir { rmdir read write remove_name create open add_name search };
-allow fingerprintd biometrics_data_file:file { write create read rename open getattr unlink };
-allow fingerprintd tee:unix_stream_socket { connectto };
+# allow fingerprintd to communicate with various devices
+
+# kernel fp device
+allow fingerprintd fingerprint_device:chr_file rw_file_perms;
+
+# secure memory device
+allow fingerprintd secmem_device:chr_file rw_file_perms;
+
+# trust zone device
+allow fingerprintd tee_device:chr_file rw_file_perms;
+allow fingerprintd tee:unix_stream_socket connectto;
+
+# /data/biometrics/*
+allow fingerprintd fingerprintd_data_file:dir create_dir_perms;
+allow fingerprintd fingerprintd_data_file:file create_file_perms;
