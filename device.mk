@@ -126,12 +126,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
-    hostapd \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
-    libwpa_client \
+    macloader \
     wifiloader \
-    wpa_supplicant \
+    hostapd \
+    libwpa_client \
+    wpa_supplicant
+
+# external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_conf.mk
+PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 # Audio
