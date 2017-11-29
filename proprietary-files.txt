@@ -77,6 +77,7 @@ vendor/lib/egl/libGLES_mali.so
 lib/egl/egl.cfg
 lib/egl/libGLES_android.so
 vendor/lib/libOpenCL.so
+lib/libvulkan.so
 
 # Media
 vendor/firmware/fimc_is_lib.bin
