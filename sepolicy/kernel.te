@@ -21,5 +21,5 @@ allow kernel battery_efs_file:file { read open };
 # /efs/wifi/.mac.info
 allow kernel wifi_efs_file:file r_file_perms;
 
-# /data/.wifiver.info
+# /data/misc/conn/.wifiver.info
 allow kernel wifi_data_file:file rw_file_perms;
