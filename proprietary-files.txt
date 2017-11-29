@@ -19,12 +19,20 @@ lib/libsamsungRecord_ns.so
 lib/libsamsungRecord.so
 lib/libsamsungSoundbooster_plus.so
 lib/libsecaudioinfo.so
+lib/libsamsungDiamondVoice.so
+lib/libSamsungAPVoiceEngine.so
 
 #Bluetooth
 vendor/firmware/bcm4343A0_V0071.0262.hcd
 vendor/firmware/bcm43438A1_V0062.0267.hcd
 vendor/lib/libbt-vendor.so
 lib/hw/bluetooth.default.so
+lib/libbt-aptX-ARM-4.2.2.so
+lib/libbt-codec_aptx.so
+lib/libbt-codec_sshd.so
+lib/libbt-codec_sshd2.so
+lib/libbt-iopdb.so
+lib/libbt-iopdb_mod.so
 etc/bluetooth/av_performance.conf
 etc/bluetooth/bt_did.conf
 etc/bluetooth/bt_stack.conf
