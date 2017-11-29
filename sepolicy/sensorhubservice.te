@@ -1,6 +1,10 @@
 #### sensorhubservice
 #
-type sensorhubservice, domain;
+type sensorhubservice, domain, domain_deprecated;
 type sensorhubservice_exec, exec_type, file_type;
 
-init_daemon_domain(sensorhubservice);
+init_daemon_domain(sensorhubservice)
+
+# /dev/input[0-9]*
+allow sensorhubservice input_device:dir r_dir_perms;
+allow sensorhubservice { input_device sensor_device }:chr_file rw_file_perms;
