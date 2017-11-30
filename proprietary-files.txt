@@ -27,6 +27,7 @@ vendor/firmware/bcm4343A0_V0071.0262.hcd
 vendor/firmware/bcm43438A1_V0062.0267.hcd
 vendor/lib/libbt-vendor.so
 lib/hw/bluetooth.default.so
+lib/libbluetooth_jni.so
 lib/libbt-aptX-ARM-4.2.2.so
 lib/libbt-codec_aptx.so
 lib/libbt-codec_sshd.so
@@ -38,6 +39,8 @@ etc/bluetooth/bt_did.conf
 etc/bluetooth/bt_stack.conf
 etc/bluetooth/iop_bt.db
 etc/bluetooth/iop_device_list.conf
+lib/libedmnativehelper.so
+
 
 # Camera
 lib/hw/camera.universal7870.so
@@ -47,6 +50,12 @@ lib/libexynoscamera3.so
 lib/libseccameracore.so
 lib/libuniplugin.so
 lib/libhwjpeg.so
+lib/libexynosutils.so
+lib/libcsc.so
+lib/libexynosgscaler.so
+lib/libexynosscaler.so
+lib/libexynosv4l2.so
+lib/libstainkiller.so
 vendor/firmware/setfile_4h5yc.bin
 vendor/firmware/setfile_imx258.bin
 
@@ -153,13 +162,12 @@ etc/wifi/bcmdhd_sta.bin
 etc/wifi/cred.conf
 etc/wifi/nvram_mfg.txt
 etc/wifi/nvram_net.txt
+vendor/lib/libsecpkcs11_engine.so
+vendor/lib/libtlc_tz_ccm.so
+vendor/lib/libSamsungPkcs11Wrapper.so
+vendor/lib/libsecure_storage.so
+vendor/lib/libsecure_storage_jni.so
 
-
-lib/libcsc.so
-lib/libexynosgscaler.so
-lib/libexynosscaler.so
-lib/libexynosv4l2.so
-lib/libstainkiller.so
 lib/libtinyalsa.so
 lib/libtinycompress.so
 vendor/lib/libLifevibes_lvverx.so
