@@ -41,8 +41,6 @@ PRODUCT_PACKAGES += \
     init.samsung.rc \
     init.samsungexynos7870.rc \
     init.samsungexynos7870.usb.rc \
-    init.usb.configfs.rc \
-    init.usb.rc \
     init.wifi.rc \
     ueventd.samsungexynos7870.rc
 
