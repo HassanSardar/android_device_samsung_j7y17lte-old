@@ -41,7 +41,6 @@ etc/bluetooth/iop_bt.db
 etc/bluetooth/iop_device_list.conf
 lib/libedmnativehelper.so
 
-
 # Camera
 lib/hw/camera.universal7870.so
 lib/libcamera_metadata.so
@@ -144,8 +143,6 @@ lib/libsec-ril-dsds.so
 lib/libsecnativefeature.so
 
 # Sensors
-bin/sensorservice
-lib/libsensorservice.so
 lib/hw/sensors.universal7870.so
 lib/libsensorlistener.so
 
