@@ -19,6 +19,4 @@ type sysfs_multipdp_writable, fs_type, sysfs_type, mlstrustedobject;
 
 allow sysfs_type tmpfs:filesystem associate;
 
-type fingerprintd_data_file, file_type;
-
 type mobicore_data_file, file_type;
