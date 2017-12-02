@@ -17,6 +17,7 @@ on post-fs-data
     mkdir /data/media/wifi/log/ 0770 wifi system
     mkdir /data/misc/dhcp 0775 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+    chown wifi root /dev/rfkill
 
     # for WIFI TRP/TIS
     mkdir /data/misc/conn 0771 system root
