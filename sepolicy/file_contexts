@@ -10,6 +10,7 @@
 /dev/sec-nfc                 u:object_r:nfc_device:s0
 
 /dev/ttySAC3                 u:object_r:bluetooth_device:s0
+/dev/ttyHS0                  u:object_r:ttyHS0_device:s0
 /dev/mbtchar[0-9]+           u:object_r:bluetooth_device:s0
 
 /dev/esfp0                   u:object_r:fingerprint_device:s0
@@ -82,6 +83,8 @@
 /data/\.otp\.info                       u:object_r:wifi_data_file:s0
 
 /data/misc/radio(/.*)?                  u:object_r:radio_data_file:s0
+
+/system/bin/wcnss_filter                u:object_r:start_hci_filter_exec:s0
 
 /data/biometrics(/.*)?                  u:object_r:fingerprintd_data_file:s0
 /data/system/users/[0-9]*/fpdata(/.*)?  u:object_r:fingerprintd_data_file:s0
