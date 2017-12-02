@@ -1,7 +1,9 @@
 import init.samsungexynos7870.usb.rc
 import init.baseband.rc
+import init.carrier.rc
 import init.wifi.rc
 import init.rilchip.rc
+
 
 # Samsung stock init.rc additions
 import init.samsung.rc
@@ -12,11 +14,7 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-    export LD_SHIM_LIBS "/system/lib/libbauthserver.so|/system/lib/libbauthtzcommon_shim.so"
-
-    start watchdogd
-
-        mkdir /preload 0771 system system
+    mkdir /preload 0771 system system
 
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
@@ -138,7 +136,7 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
     chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
 
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
@@ -162,7 +160,7 @@ on boot
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-    chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
+    chmod 0666 /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
 
 #Setting Governor Parameters
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "39000 1248000:19000"
@@ -785,7 +783,6 @@ service rpmbd /system/bin/rpmbd
      class main
 
 on property:sys.mobicoredaemon.enable=true
-    start cs_service
     write /proc/iccc_ready 1
 
 on property:ro.multisim.simslotcount=1
@@ -843,12 +840,12 @@ on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 
-service prepare_param /system/bin/prepare_param.sh /dev/block/platform/13540000.dwmmc0/by-name/PARAM
-    class core
-    user root
-    group root
-    seclabel u:r:prepare_param:s0
-    oneshot
+#service prepare_param /system/bin/prepare_param.sh /dev/block/platform/13540000.dwmmc0/by-name/PARAM
+#    class core
+#    user root
+#    group root
+#    seclabel u:r:prepare_param:s0
+#    oneshot
 
 # GPS
 service gpsd /system/bin/gpsd
@@ -864,17 +861,11 @@ service secure_storage /system/bin/secure_storage_daemon
     user system
     group system
     disabled
-on property:ro.securestorage.knox=true
-    mkdir /dev/.secure_storage
-    chmod 0711 /dev/.secure_storage
-    chown system system /dev/.secure_storage
-    restorecon -R /dev/.secure_storage
-    start secure_storage
+
 on property:ro.securestorage.support=true
     mkdir /dev/.secure_storage
     chmod 0711 /dev/.secure_storage
     chown system system /dev/.secure_storage
-    restorecon -R /dev/.secure_storage
     start secure_storage
 
 # umount service

@@ -77,6 +77,10 @@ etc/ca.pem
 lib/hw/gps.default.so
 lib/libfloatingfeature.so
 lib/libwrappergps.so
+vendor/lib/hw/flp.default.so
+vendor/lib/libizat_core.so
+vendor/lib/libgeofence.so
+vendor/lib/libflp.so
 
 # Graphics
 # Vulcan and OpenCL are implemented in this file,

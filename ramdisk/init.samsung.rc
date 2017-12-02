@@ -1,9 +1,19 @@
-on init
 # [ SEC_SELINUX_PORTING_COMMON
     # for audit message
     chown system system /proc/avc_msg
     chmod 0660 /proc/avc_msg
 # ] SEC_SELINUX_PORTING_COMMON
+
+    # Mix device-specific information into the entropy pool
+    copy /proc/cmdline /dev/urandom
+    copy /default.prop /dev/urandom
+
+    # Backward compatibility.
+    symlink /system/etc /etc
+    symlink /sys/kernel/debug /d
+
+    # Link /vendor to /system/vendor for devices without a vendor partition.
+    symlink /system/vendor /vendor
 
 # Storage views to support runtime permissions
     mkdir /storage 0755 root root
@@ -124,6 +134,10 @@ on post-fs-data
     restorecon /dev/icd
     restorecon /dev/icdr
 
+    # start debuggerd to make debugging early-boot crashes easier.
+    start debuggerd
+    start debuggerd64
+
     # mobicore
     export MC_AUTH_TOKEN_PATH /efs
     mkdir /efs/TEE  0770 radio system
@@ -132,6 +146,48 @@ on post-fs-data
     start mobicore
 
     chmod 0775 /data/misc/radio
+
+    # create basic filesystem structure
+    mkdir /data/misc 01771 system misc
+    mkdir /data/misc/bluedroid 02770 bluetooth net_bt_stack
+    # Fix the access permissions and group ownership for 'bt_config.conf'
+    chmod 0660 /data/misc/bluedroid/bt_config.conf
+    chown bluetooth net_bt_stack /data/misc/bluedroid/bt_config.conf
+    mkdir /data/misc/bluetooth 0770 bluetooth net_bt_stack
+    mkdir /data/misc/keystore 0700 keystore keystore
+    mkdir /data/misc/gatekeeper 0700 system system
+    mkdir /data/misc/keychain 0771 system system
+    mkdir /data/misc/net 0750 root shell
+    mkdir /data/misc/radio 0775 system radio
+    mkdir /data/misc/sms 0770 system radio
+    mkdir /data/misc/zoneinfo 0775 system system
+    mkdir /data/misc/vpn 0770 system vpn
+    mkdir /data/misc/shared_relro 0771 shared_relro shared_relro
+    mkdir /data/misc/systemkeys 0700 system system
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
+    mkdir /data/misc/wifi_hostapd 0771 wifi system
+    mkdir /data/misc/wifi_share_profile 0771 wifi system
+    mkdir /data/misc/ethernet 0770 system system
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    mkdir /data/misc/user 0771 root root
+    mkdir /data/misc/perfprofd 0775 root root
+    # give system access to wpa_supplicant.conf for backup and restore
+    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
+    mkdir /data/local 0751 root root
+    mkdir /data/misc/media 0700 media media
+    mkdir /data/misc/mediacodec 0700 mediacodec mediacodec
+    mkdir /data/misc/audioserver 0700 audioserver audioserver
+    mkdir /data/misc/cameraserver 0700 cameraserver cameraserver
+    mkdir /data/misc/vold 0700 root root
+    mkdir /data/misc/boottrace 0771 system shell
+    mkdir /data/misc/update_engine 0700 root root
+    mkdir /data/misc/trace 0700 root root
+    # profile file layout
+    mkdir /data/misc/profiles 0771 system system
+    mkdir /data/misc/profiles/cur 0771 system system
+    mkdir /data/misc/profiles/ref 0771 system system
 
     # Samsung Pay
     mkdir /efs/pfw_data 0760 spay spay
@@ -173,25 +229,27 @@ on post-fs-data
     chmod 0775 /system/etc/security/.drm
 
     # Added for Playready DRM Support
-    #mkdir /data/data/.drm 0775
-    #chown drm system /data/data/.drm
-    #chmod 0775 /data/data/.drm
-    #mkdir /data/data/.drm/.playready 0775
-    #chown drm system /data/data/.drm/.playready
-    #chmod 0775 /data/data/.drm/.playready
+	cpyContent_rmdir /data/data/.drm
+    mkdir /data/.drm 0775
+    chown drm system /data/.drm
+    chmod 0775 /data/.drm
+    mkdir /data/.drm/.playready 0775
+    chown drm system /data/.drm/.playready
+    chmod 0775 /data/.drm/.playready
 
     # Added for Playready DCM DRM Support
-    #mkdir /data/.dcmdrm 0775
-    #chown drm system /data/.dcmdrm
-    #chmod 0775 /data/.dcmdrm
-    #mkdir /data/.dcmdrm/.playready 0775
-    #chown drm system /data/.dcmdrm/.playready
-    #chmod 0775 /data/.dcmdrm/.playready
+    mkdir /data/.dcmdrm 0775
+    chown drm system /data/.dcmdrm
+    chmod 0775 /data/.dcmdrm
+    mkdir /data/.dcmdrm/.playready 0775
+    chown drm system /data/.dcmdrm/.playready
+    chmod 0775 /data/.dcmdrm/.playready
 
     # Added drm folder to copy drm plugins
     mkdir /system/lib/drm 0775
     chown root root /system/lib/drm
     chmod 0775 /system/lib/drm
+
 # ]
 
     # FIDO
@@ -219,6 +277,11 @@ on boot
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
+
+    # basic network init
+    ifup lo
+    hostname localhost
+    domainname localdomain
 
     # set RLIMIT_NICE to allow priorities from 19 to -20
     setrlimit 13 40 40
@@ -276,6 +339,21 @@ on boot
     chown system system /sys/class/sec/tsp/all_touch_count
     chown system system /sys/class/sec/tsp/z_value
 
+    # Permissions for System Server and daemons.
+    chown radio system /sys/android_power/state
+    chown radio system /sys/android_power/request_state
+    chown radio system /sys/android_power/acquire_full_wake_lock
+    chown radio system /sys/android_power/acquire_partial_wake_lock
+    chown radio system /sys/android_power/release_wake_lock
+    chown system system /sys/power/autosleep
+    chown system system /sys/power/state
+    chown system system /sys/power/wakeup_count
+    chown radio wakelock /sys/power/wake_lock
+    chown radio wakelock /sys/power/wake_unlock
+    chmod 0660 /sys/power/state
+    chmod 0660 /sys/power/wake_lock
+    chmod 0660 /sys/power/wake_unlock
+
     # Change permission for dvfshelper
     chown radio system /sys/power/cpufreq_table
     chmod 0664 /sys/power/cpufreq_table
@@ -301,6 +379,7 @@ on boot
     chmod 0664 /sys/class/input_booster/touchkey/freq
     chmod 0664 /sys/class/input_booster/touchkey/time
 
+
  # permission for CHARGING
    mkdir /efs/Battery 0775 radio system
    chown radio system /efs/Battery
@@ -312,6 +391,7 @@ on boot
    chown system radio /efs/Battery/fg_full_voltage
    chown system radio /sys/class/power_supply/battery/fg_full_voltage
    chown system radio /sys/class/power_supply/battery/batt_self_discharging_control
+   chown system radio /sys/class/power_supply/battery/safety_timer_set
    chown system radio /sys/class/power_supply/battery/batt_inbat_wireless_cs100
    chown system radio /sys/class/power_supply/battery/batt_swelling_control
    chmod 0664 /efs/Battery/fg_full_voltage
@@ -575,6 +655,16 @@ on boot
     chown system system /sys/class/timed_output/vibrator/intensity
     chown system system /sys/class/timed_output/vibrator/multi_freq
     chown system system /sys/class/timed_output/vibrator/haptic_engine
+    chown system system /sys/class/leds/keyboard-backlight/brightness
+    chown system system /sys/class/leds/lcd-backlight/brightness
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/jogball-backlight/brightness
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/red/device/grpfreq
+    chown system system /sys/class/leds/red/device/grppwm
+    chown system system /sys/class/leds/red/device/blink
 
 #Store Gyro cal data
     chown system system /efs/FactoryApp/gyro_cal_data
@@ -657,6 +747,7 @@ on charger
     copy /system/vendor/firmware/battery_data.dat /efs/Battery/battery_data.dat
     chmod 0400 /efs/Battery/battery_data.dat
     write /sys/class/power_supply/battery/batt_update_data "/efs/Battery/battery_data.dat"
+    class_start charger
 
 service drm /system/bin/drmserver
     class main
@@ -676,7 +767,7 @@ service scs /system/bin/scs
     disabled
 
 # MobiCore startup
-service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin -r /system/app/mcRegistry/ffffffffd0000000000000000000001c.tlbin
     class core
     user system
     group system
