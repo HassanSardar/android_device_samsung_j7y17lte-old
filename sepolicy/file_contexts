@@ -9,7 +9,7 @@
 /dev/bcm2079x                u:object_r:nfc_device:s0
 /dev/sec-nfc                 u:object_r:nfc_device:s0
 
-/dev/ttySAC3                 u:object_r:bluetooth_device:s0
+/dev/ttySAC0                 u:object_r:bluetooth_device:s0
 /dev/ttyHS0                  u:object_r:ttyHS0_device:s0
 /dev/mbtchar[0-9]+           u:object_r:bluetooth_device:s0
 
@@ -58,7 +58,7 @@
 
 ####################################
 # efs files
-/efs/bluetooth(/.*)?         u:object_r:bluetooth_efs_file:s0
+/efs/bluetooth/bt_addr         u:object_r:bluetooth_efs_file:s0
 /efs/Battery(/.*)?           u:object_r:battery_efs_file:s0
 /efs/drm(/.*)?               u:object_r:drm_efs_file:s0
 /efs/FactoryApp(/.*)?        u:object_r:app_efs_file:s0
@@ -103,10 +103,9 @@
 /sys/class/lcd(/.*)?         -- u:object_r:sysfs_writable:s0
 
 # bluetooth
-/sys/devices/bluetooth.[0-9]*/rfkill/rfkill0/state  u:object_r:sysfs_bluetooth_writable:s0
-/sys/devices/bluetooth.[0-9]*/rfkill/rfkill0/type   u:object_r:sysfs_bluetooth_writable:s0
-/sys/class/rfkill/rfkill[0-9]*/state             -- u:object_r:sysfs_bluetooth_writable:s0
-/sys/class/rfkill/rfkill[0-9]*/type              -- u:object_r:sysfs_bluetooth_writable:s0
+/sys/class/rfkill/rfkill0/state             u:object_r:sysfs_bluetooth_writable:s0
+/sys/class/rfkill/rfkill0/type              u:object_r:sysfs_bluetooth_writable:s0
+/sys/class/rfkill/rfkill0/device/extldo     u:object_r:sysfs_bluetooth_writable:s0
 
 # camera
 /sys/devices/virtual/camera(/.*)?           u:object_r:camera_device:s0
