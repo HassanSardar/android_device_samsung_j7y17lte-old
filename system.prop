@@ -1,10 +1,3 @@
-ro.product.model=SM-G610F
-ro.product.device=on7xelte
-ro.product.name=on7xeltedd
-ro.build.product=on7xelte
-ro.build.description=on7xeltedd-user 7.0 NRD90M G610FDDU1BQH9 release-keys
-ro.build.fingerprint=samsung/on7xeltedd/on7xelte:7.0/NRD90M/G610FDDU1BQH9:user/release-keys
-
 # Audio
 af.fast_track_multiplier=1
 audio_hal.force_voice_config=wide
