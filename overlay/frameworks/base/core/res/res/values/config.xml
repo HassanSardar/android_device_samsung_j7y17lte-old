@@ -182,7 +182,7 @@
     <bool name="config_animateScreenLights">false</bool>
 
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
-    <bool name="config_unplugTurnsOnScreen">false</bool>
+    <bool name="config_unplugTurnsOnScreen">true</bool>
 
     <!-- Flag indicating whether we should enable the automatic brightness in Settings.
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
@@ -235,18 +235,19 @@
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">true</bool>
 
+    <!-- Doze (Ambient display) -->
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+
     <!-- If true, the doze component is not started until after the screen has been
          turned off and the screen off animation has been performed. -->
-    <string name="config_dozeComponent" />
-    <bool name="config_dozeAfterScreenOff">false</bool>
+    <bool name="config_dozeAfterScreenOff">true</bool>
 
     <!-- Permit doze mode to operate -->
     <bool name="config_enableAutoPowerModes">true</bool>
 
     <!-- Power Management: Specifies whether to decouple the interactive state of the
          device from the display on/off state. -->
-    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">false</bool>
-    <bool name="config_powerDecoupleInteractiveModeFromDisplay">false</bool>
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
     <!-- Control the behavior when the user short presses the power button.
     0 - Nothing
