@@ -91,7 +91,7 @@ TARGET_SEC_FP_HAL_VARIANT := bauth
 
 # Samsung Hardware
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
-BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
 
 # Samsung Camera
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
@@ -159,7 +159,6 @@ SIM_COUNT := 2
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # Sensors
-TARGET_NO_SENSOR_PERMISSION_CHECK := true
 TARGET_SEC_FP_HAL_VARIANT := bauth
 
 # Release tools
@@ -187,7 +186,7 @@ TW_EXCLUDE_SUPERSU := true
 endif
 
 # Seccomp filters
-BOARD_SECCOMP_POLICY += $(LOCAL_PATH)/seccomp
+BOARD_SECCOMP_POLICY := $(LOCAL_PATH)/seccomp
 
 # SELinux
 BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
