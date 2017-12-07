@@ -152,6 +152,7 @@ lib/libsensorlistener.so
 
 # Surface Composer
 lib/hw/gralloc.exynos5.so
+lib/libion.so
 
 # Wifi
 etc/plmn_delta.bin
