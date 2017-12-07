@@ -1,4 +1,4 @@
-# /dev/ttySAC3
+# /dev/ttySAC0
 type bluetooth_device, dev_type;
 
 type bbd_device, dev_type;

@@ -170,6 +170,9 @@ vendor/lib/libSamsungPkcs11Wrapper.so
 vendor/lib/libsecure_storage.so
 vendor/lib/libsecure_storage_jni.so
 
+### Widevine
+lib/libstagefright_hdcp.so
+
 lib/libtinyalsa.so
 lib/libtinycompress.so
 vendor/lib/libLifevibes_lvverx.so

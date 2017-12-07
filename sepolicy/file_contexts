@@ -10,7 +10,6 @@
 /dev/sec-nfc                 u:object_r:nfc_device:s0
 
 /dev/ttySAC0                 u:object_r:bluetooth_device:s0
-/dev/ttyHS0                  u:object_r:ttyHS0_device:s0
 /dev/mbtchar[0-9]+           u:object_r:bluetooth_device:s0
 
 /dev/esfp0                   u:object_r:fingerprint_device:s0
