@@ -65,7 +65,6 @@ vendor/lib/mediadrm/libwvdrmengine.so
 # Fingerprint
 app/mcRegistry/ffffffff00000000000000000000000a.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
-lib/hw/fingerprint.default.so
 lib/libbauthserver.so
 lib/libbauthtzcommon.so
 lib/libegis_fp_normal_sensor_test.so
