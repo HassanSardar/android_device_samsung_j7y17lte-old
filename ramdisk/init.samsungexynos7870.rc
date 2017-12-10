@@ -1,9 +1,7 @@
 import init.samsungexynos7870.usb.rc
 import init.baseband.rc
-import init.carrier.rc
 import init.wifi.rc
 import init.rilchip.rc
-
 
 # Samsung stock init.rc additions
 import init.samsung.rc
@@ -138,7 +136,7 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
     chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
 
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
@@ -162,27 +160,11 @@ on boot
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-    chmod 0666 /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-
-#Setting Governor Parameters
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "39000 1248000:19000"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration 40000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 89  
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 900000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "75 1248000:85"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 20000
-
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "39000 1248000:19000"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 89  
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 900000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "75 1248000:85"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 20000
+    chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
 
     chown bluetooth net_bt /dev/ttySAC0
     chmod 0660 /dev/ttySAC0
+
 # permissions for bluetooth.
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
@@ -628,6 +610,10 @@ on fs
     setprop ro.crypto.fuse_sdcard true
     chown radio system /efs
 
+# Fingerprint
+    mkdir /dev/validity 0770 system system
+    mkdir /data/validity 0770 system system
+
 # Permissions for ION
     chmod 0660 /sys/class/ion_cma/ion_video_ext/isolated
     chown system system /sys/class/ion_cma/ion_video_ext/isolated
@@ -642,6 +628,8 @@ on fs
 # Permissions for MDNIE
     chown system media_rw /sys/class/mdnie/mdnie/mode
     chown system media_rw /sys/class/mdnie/mdnie/scenario
+    chown system system /sys/class/mdnie/mdnie/accessibility
+    chown system system /sys/class/mdnie/mdnie/sensorRGB
 
 # For cpefs partition
     check_fs /dev/block/platform/13540000.dwmmc0/by-name/CPEFS ext4
@@ -768,11 +756,11 @@ on property:wc_transport.start_hci=true
 on property:wc_transport.start_hci=false
     stop start_hci_filter
 
-#service start_hci_filter /system/bin/wcnss_filter
-#    class late_start
-#    user bluetooth
-#    group bluetooth qcom_diag
-#    disabled
+service start_hci_filter /system/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth qcom_diag
+    disabled
 
 # MobiCore startup
 #service mobicore /system/bin/mcDriverDaemon -r /system/app/020a0000000000000000000000000000.drbin -r /system/app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin
@@ -793,6 +781,7 @@ service rpmbd /system/bin/rpmbd
      class main
 
 on property:sys.mobicoredaemon.enable=true
+    start cs_service
     write /proc/iccc_ready 1
 
 on property:ro.multisim.simslotcount=1
@@ -850,12 +839,12 @@ on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 
-#service prepare_param /system/bin/prepare_param.sh /dev/block/platform/13540000.dwmmc0/by-name/PARAM
-#    class core
-#    user root
-#    group root
-#    seclabel u:r:prepare_param:s0
-#    oneshot
+service prepare_param /system/bin/prepare_param.sh /dev/block/platform/13540000.dwmmc0/by-name/PARAM
+    class core
+    user root
+    group root
+    seclabel u:r:prepare_param:s0
+    oneshot
 
 # GPS
 service gpsd /system/bin/gpsd
@@ -863,7 +852,6 @@ service gpsd /system/bin/gpsd
     user gps
     group system inet wakelock
     ioprio be 0
-    seclabel u:r:gpsd:s0
 
 # Secure Storage startup
 service secure_storage /system/bin/secure_storage_daemon
@@ -871,11 +859,17 @@ service secure_storage /system/bin/secure_storage_daemon
     user system
     group system
     disabled
-
+on property:ro.securestorage.knox=true
+    mkdir /dev/.secure_storage
+    chmod 0711 /dev/.secure_storage
+    chown system system /dev/.secure_storage
+    restorecon -R /dev/.secure_storage
+    start secure_storage
 on property:ro.securestorage.support=true
     mkdir /dev/.secure_storage
     chmod 0711 /dev/.secure_storage
     chown system system /dev/.secure_storage
+    restorecon -R /dev/.secure_storage
     start secure_storage
 
 # umount service

@@ -1,3 +1,8 @@
+#
+# IMPORTANT: Do not create world writable files or directories.
+# This is a common source of Android security bugs.
+#
+
 on early-init
     # Set init and its forked children's oom_adj.
     write /proc/1/oom_score_adj -1000
@@ -589,15 +594,6 @@ on post-fs-data
     #OTP
     mkdir /data/otp 0700 system system
 
-    # NFC
-    mkdir /data/nfc 0700 nfc nfc
-    mkdir /data/nfc/param 0700 nfc nfc
-    mkdir /data/bcmnfc 0700 nfc nfc
-    mkdir /data/bcmnfc/param 0700 nfc nfc
-
-    # Samsung Pay
-    mkdir /efs/pfw_data 0760 spay spay
-
     # MST/NFC Switch
     chown spay system /dev/mst_ctrl
     chmod 0660 /dev/mst_ctrl
@@ -832,20 +828,6 @@ on boot
     chown system radio /sys/class/sec/switch/otg_test
     chown system radio /sys/class/sec/switch/apo_factory
 
-	# NFC_NXP
-    setprop ro.nfc.port "I2C"
-    chmod 0660 /dev/pn547
-    chown nfc nfc /dev/pn547
-    chown nfc /dev/pn547
-    chgrp nfc /dev/pn547
-
-    # NFC_BROADCOM
-    chmod 0600 /dev/bcm2079x
-    chown nfc nfc /dev/bcm2079x
-
-    # NFC_SLSI
-    chmod 0660 /dev/sec-nfc
-    chown nfc nfc /dev/sec-nfc
 
     # GPIO DVS
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpioinit_check
@@ -1517,8 +1499,8 @@ on property:ro.debuggable=1
     chmod 0773 /data/misc/trace
     start console
 
-# service vaultkeeperd /system/bin/vaultkeeperd
-#    class core
+service vaultkeeperd /system/bin/vaultkeeperd
+    class core
 
 service drm /system/bin/drmserver
     class main
