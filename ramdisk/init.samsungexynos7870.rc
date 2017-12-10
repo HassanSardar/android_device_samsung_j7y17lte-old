@@ -184,6 +184,7 @@ on boot
     chown system radio /sys/class/fingerprint/fingerprint/name
     chown system radio /sys/class/fingerprint/fingerprint/vendor
     chown system radio /sys/class/fingerprint/fingerprint/adm
+    chown system radio /sys/class/fingerprint/fingerprint/enabled
 
 # Sensors permissions
 # Accelerometer_sensor

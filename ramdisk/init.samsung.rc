@@ -679,15 +679,6 @@ on post-fs-data
     chown root root /system/etc/security/.drm
     chmod 0775 /system/etc/security/.drm
 
-    # Added for Playready DRM Support
-	cpyContent_rmdir /data/data/.drm
-    mkdir /data/.drm 0775
-    chown drm system /data/.drm
-    chmod 0775 /data/.drm
-    mkdir /data/.drm/.playready 0775
-    chown drm system /data/.drm/.playready
-    chmod 0775 /data/.drm/.playready
-
     # Added for Playready DCM DRM Support
     mkdir /data/.dcmdrm 0775
     chown drm system /data/.dcmdrm
@@ -1520,7 +1511,8 @@ service scs /system/bin/scs
     disabled
 
 # MobiCore startup
-service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin -r /system/app/mcRegistry/ffffffffd0000000000000000000001c.tlbin
+#service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin -r /system/app/mcRegistry/ffffffffd0000000000000000000001c.tlbin
+service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin -r /system/app/mcRegistry/ffffffffd0000000000000000000001c.tlbin
     class core
     user system
     group system

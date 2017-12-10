@@ -275,6 +275,9 @@
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
+ <!-- For performance and storage reasons, limit the number of fingerprints per user -->
+    <integer name="config_fingerprintMaxTemplatesPerUser">3</integer>
+
 <!-- Indicate whether closing the lid causes the device to go to sleep and opening
       it causes the device to wake up.
       The default is false. -->

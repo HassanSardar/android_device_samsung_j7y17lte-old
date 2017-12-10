@@ -116,6 +116,21 @@ bin/mcDriverDaemon
 vendor/lib/libMcClient.so
 vendor/lib/libMcRegistry.so
 
+# Trustlet Connector (tlc)
+lib/libtlcotp.so
+lib/libtlc_proxy.so
+lib/libtlc_proxy_tui.so
+lib/libtlc_spay.so
+lib/libtlc_t2_ks_mi.so
+lib/libtlc_tima_atn.so
+lib/libtlc_tima_pkm.so
+lib/libtlc_tima_tui.so
+lib/libtlc_tz_ccm.so
+lib/libtlc_comm.so
+lib/libtlc_tz_esecomm.so
+lib/libtlc_tz_iccc.so
+lib/libtlc_tz_keystore.so
+
 # OMX
 lib/omx/libOMX.Exynos.AVC.Decoder.so
 lib/omx/libOMX.Exynos.AVC.Encoder.so

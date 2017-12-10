@@ -85,6 +85,10 @@ TARGET_AUDIOHAL_VARIANT := samsung
 TARGET_POWERHAL_VARIANT := samsung
 TARGET_SEC_FP_HAL_VARIANT := bauth
 
+# Workaround for non-working incall/callspeaker-mic
+RIL_SET_CALL_CLOCK_SYNC_WORKAROUND := true
+RIL_SET_TWO_MIC_CONTROL_WORKAROUND := true
+
 # Samsung Hardware
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
 BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
