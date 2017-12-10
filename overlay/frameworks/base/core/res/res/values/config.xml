@@ -249,13 +249,6 @@
          device from the display on/off state. -->
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
-    <!-- Control the behavior when the user short presses the power button.
-    0 - Nothing
-    1 - Go to sleep (doze)
-    2 - Really go to sleep (don't doze)
-    3 - Really go to sleep and go home (don't doze) -->
-    <integer name="config_shortPressOnPowerBehavior">1</integer> 
-
     <!-- Allow screen mirroring/miracast -->
     <bool name="config_enableWifiDisplay">true</bool>
 
@@ -281,6 +274,11 @@
 
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
+
+<!-- Indicate whether closing the lid causes the device to go to sleep and opening
+      it causes the device to wake up.
+      The default is false. -->
+    <bool name="config_lidControlsSleep">true</bool>
 
     <!-- Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
