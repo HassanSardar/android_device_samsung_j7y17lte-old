@@ -252,6 +252,10 @@
     <!-- Allow screen mirroring/miracast -->
     <bool name="config_enableWifiDisplay">true</bool>
 
+    <!-- Control whether Night display is available. This should only be enabled on devices
+         with HWC 2.0 or higher. -->
+    <bool name="config_nightDisplayAvailable">false</bool>
+
     <!-- The device supports freeform window management -->
     <bool name="config_freeformWindowManagement">true</bool>
 
