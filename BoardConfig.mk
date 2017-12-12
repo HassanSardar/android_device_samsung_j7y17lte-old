@@ -72,6 +72,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Use these flags if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
