@@ -174,6 +174,7 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd \
+    mcDriverDaemon \
     fingerprint.exynos5 \
     libbauthtzcommon_shim
 
