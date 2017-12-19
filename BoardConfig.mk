@@ -34,7 +34,7 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_VARIANT := generic
 TARGET_CPU_CORTEX_A53 := true
 
 # Binder
@@ -96,6 +96,12 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
 
 # Samsung Camera
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+
+# Gralloc
+TARGET_USES_GRALLOC1_ADAPTER := true
+
+# ION
+TARGET_USES_ION := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
