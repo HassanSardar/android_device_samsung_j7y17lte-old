@@ -33,7 +33,7 @@ Copyright (C) 2017 Siddhant Naik
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project name="Exynos7870/android_device_samsung_exynos7870-common" path="device/samsung/exynos7870-common" remote="github" revision="cm-14.1" />
-  <project name="Exynos7870/android_device_samsung_on7xelte" path="device/samsung/on7xelte" remote="github" revision="cm-14.1" />
+  <project name="Exynos7870/android_device_samsung_on7xelte" path="device/samsung/on7xelte" remote="github" revision="n7x" />
   <project name="Exynos7870/android_kernel_samsung_exynos7870-common" path="kernel/samsung/exynos7870" remote="github" revision="cm-14.1" />
   <project name="Exynos7870/android_vendor_samsung_on7xelte" path="vendor/samsung/on7xelte" remote="github" revision="cm-14.1" />
   <project name="Exynos7870/android_hardware_samsung_slsi-cm_exynos" path="hardware/samsung_slsi-cm/exynos" remote="github" revision="cm-14.1" />
