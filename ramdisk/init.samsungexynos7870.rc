@@ -184,7 +184,6 @@ on boot
     chown system radio /sys/class/fingerprint/fingerprint/name
     chown system radio /sys/class/fingerprint/fingerprint/vendor
     chown system radio /sys/class/fingerprint/fingerprint/adm
-    chown system radio /sys/class/fingerprint/fingerprint/enabled
 
 # Sensors permissions
 # Accelerometer_sensor
@@ -210,47 +209,6 @@ on boot
     chown system radio /sys/class/sensors/proximity_sensor/barcode_emul_en
     chown system radio /sys/class/sensors/proximity_sensor/prox_offset_pass
     chown system radio /sys/class/sensors/proximity_sensor/prox_trim
-
-# Light_sensor
-    chown system radio /sys/class/sensors/light_sensor/lux
-    chown system radio /sys/class/sensors/light_sensor/raw_data
-    chown system radio /sys/class/sensors/light_sensor/vendor
-    chown system radio /sys/class/sensors/light_sensor/name
-
-# Gyro_sensor
-    chown system radio /sys/class/sensors/gyro_sensor/power_on
-    chown system radio /sys/class/sensors/gyro_sensor/power_off
-    chown system radio /sys/class/sensors/gyro_sensor/temperature
-    chown system radio /sys/class/sensors/gyro_sensor/selftest
-    chown system radio /sys/class/sensors/gyro_sensor/selftest_dps
-    chown system radio /sys/class/sensors/gyro_sensor/vendor
-    chown system radio /sys/class/sensors/gyro_sensor/name
-
-# Magnetic_sensor
-    chown system radio /sys/class/sensors/magnetic_sensor/raw_data
-    chown system radio /sys/class/sensors/magnetic_sensor/vendor
-    chown system radio /sys/class/sensors/magnetic_sensor/name
-    chown system radio /sys/class/sensors/magnetic_sensor/selftest
-    chown system radio /sys/class/sensors/magnetic_sensor/raw_data
-
-# Grip_sensor
-    chown system radio /sys/class/sensors/grip_sensor/name
-    chown system radio /sys/class/sensors/grip_sensor/vendor
-    chown system radio /sys/class/sensors/grip_sensor/raw_data
-    chown system radio /sys/class/sensors/grip_sensor/threshold
-    chown system radio /sys/class/sensors/grip_sensor/calibration
-    chown system radio /sys/class/sensors/grip_sensor/onoff
-    chown system radio /sys/class/sensors/grip_sensor/reset
-    chown system radio /sys/class/sensors/grip_sensor/mode
-    chown system radio /sys/class/sensors/grip_sensor/gain
-    chown system radio /sys/class/sensors/grip_sensor/start
-    chown system radio /sys/class/sensors/grip_sensor/normal_threshold
-    chown system radio /sys/class/sensors/grip_sensor/gain_ch2
-    chown system radio /sys/class/sensors/grip_sensor/raw_data_ch2
-    chown system radio /sys/class/sensors/grip_sensor/diff_avg_ch2
-    chown system radio /sys/class/sensors/grip_sensor/normal_threshold_ch2
-    chown system radio /sys/class/sensors/grip_sensor/ch_state
-    chown system radio /sys/class/sensors/grip_sensor/body_threshold
 
 #device
     chown system system /dev/iio:device0
@@ -611,10 +569,6 @@ on fs
     setprop ro.crypto.fuse_sdcard true
     chown radio system /efs
 
-# Fingerprint
-    mkdir /dev/validity 0770 system system
-    mkdir /data/validity 0770 system system
-
 # Permissions for ION
     chmod 0660 /sys/class/ion_cma/ion_video_ext/isolated
     chown system system /sys/class/ion_cma/ion_video_ext/isolated
@@ -736,11 +690,6 @@ on property:ro.bootmode=charger
 
 on property:ro.bootmode=charger
    class_start sec-charger
-
-service battery_charger /sbin/healthd -c
-    class charger
-    critical
-    seclabel u:r:healthd:s0
 
 # SecEDS
 service TvoutService_C /system/bin/bintvoutservice
