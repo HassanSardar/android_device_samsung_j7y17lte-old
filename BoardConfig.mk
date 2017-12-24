@@ -62,6 +62,11 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_BAND                        := 802_11_ABG
 
+# Recovery
+BOARD_HAS_DOWNLOAD_MODE := true
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/ramdisk/fstab.samsungexynos7870
+TARGET_OTA_ASSERT_DEVICE := on7xelte
+
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 SIM_COUNT := 2
