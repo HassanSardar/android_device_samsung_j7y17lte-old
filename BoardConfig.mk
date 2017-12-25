@@ -25,7 +25,10 @@ TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
 # Kernel config
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos7870
 TARGET_KERNEL_CONFIG := lineage-on7xelte_defconfig
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt $(LOCAL_PATH)/dtb.img
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+
+BOARD_KERNEL_SEPARATED_DT := true
+TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 33554432
