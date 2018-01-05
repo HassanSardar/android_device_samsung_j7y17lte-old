@@ -44,9 +44,6 @@ BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 BOARD_CUSTOM_BT_CONFIG := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 
-# Samsung HALs
-TARGET_SEC_FP_HAL_VARIANT := bauth
-
 # Wifi
 BOARD_WLAN_DEVICE                := bcmdhd
 BOARD_WLAN_DEVICE_REV            := bcm4343
