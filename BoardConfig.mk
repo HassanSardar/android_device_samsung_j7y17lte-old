@@ -63,7 +63,7 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_BAND                        := 802_11_ABG
 
 # Recovery
-TARGET_OTA_ASSERT_DEVICE := j7y17lte
+TARGET_OTA_ASSERT_DEVICE := j7y17lte,j7y17ltem,j7y17ltextc
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
