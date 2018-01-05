@@ -17,14 +17,14 @@
 # Inherit from Exynos7870-common
 include device/samsung/exynos7870-common/BoardConfigCommon.mk
 
-LOCAL_PATH := device/samsung/on7xelte
+LOCAL_PATH := device/samsung/j7y17lte
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
 
 # Kernel config
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos7870
-TARGET_KERNEL_CONFIG := lineage-on7xelte_defconfig
+TARGET_KERNEL_CONFIG := lineage-j7y17lte_defconfig
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 BOARD_KERNEL_SEPARATED_DT := true
@@ -66,7 +66,7 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_BAND                        := 802_11_ABG
 
 # Recovery
-TARGET_OTA_ASSERT_DEVICE := on7xelte
+TARGET_OTA_ASSERT_DEVICE := j7y17lte
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -76,4 +76,4 @@ SIM_COUNT := 2
 TARGET_SEC_FP_HAL_VARIANT := bauth
 
 # Inherit from the proprietary version
--include vendor/samsung/on7xelte/BoardConfigVendor.mk
+-include vendor/samsung/j7y17lte/BoardConfigVendor.mk
