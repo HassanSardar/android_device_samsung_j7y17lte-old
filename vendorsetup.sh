@@ -1,1 +1,1 @@
-add_lunch_combo rr_on7xelte-userdebug
+add_lunch_combo rr_j7y17lte-userdebug
