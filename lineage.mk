@@ -21,10 +21,10 @@ $(call inherit-product, device/samsung/j7y17lte/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Inherit some common Resurrection Remix stuff
-$(call inherit-product, vendor/rr/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Device identifier
-PRODUCT_NAME := rr_j7y17lte
+PRODUCT_NAME := lineage_j7y17lte
 PRODUCT_DEVICE := j7y17lte
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-J730GM
