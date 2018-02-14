@@ -1,0 +1,1 @@
+TARGET_NEEDS_GCC_LIBC := true
