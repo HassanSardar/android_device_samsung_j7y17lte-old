@@ -43,6 +43,7 @@ debug.egl.hw=1
 debug.sf.enable_hwc_vds=1
 debug.sf.hw=1
 persist.sys.ui.hw=true
+debug.hwui.use_buffer_age=false
 
 # Boot directly from charger mode
 ro.enable_boot_charger_mode=1
@@ -54,7 +55,7 @@ rild.libpath2=/system/lib/libsec-ril-dsds.so
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
 ro.ril.telephony.mqanelements=6
-ro.telephony.default_network=9
+ro.telephony.default_network=22
 ro.telephony.get_imsi_from_sim=true
 ro.ril.force_eri_from_xml=true
 
