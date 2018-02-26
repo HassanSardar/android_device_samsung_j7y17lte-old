@@ -20,7 +20,7 @@ $(call inherit-product, device/samsung/j7y17lte/device.mk)
 # Inherit from those products. Most specific first
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
-# Inherit some common Resurrection Remix stuff
+# Inherit some common LineageOS stuff
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Device identifier
