@@ -1,0 +1,5 @@
+# /dev/i2c-20 - TFA98xx amplifier
+type amplifier_device, dev_type;
+
+# /dev/vfsspi
+type fingerprint_device, dev_type;
