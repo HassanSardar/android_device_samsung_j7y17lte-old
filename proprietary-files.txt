@@ -1,34 +1,69 @@
-#Bluetooth
+# Audio
+etc/Tfa9890.cnt
+lib/hw/audio.primary.universal7870.so
+lib/libaudioroute.so
+lib/libaudiosa.so
+lib/libcodecdump.so
+lib/libmysound.so
+lib/libpreprocessing_nxp.so
+lib/librecordalive.so
+lib/libsamsungDiamondVoiceExtV2.so
+lib/libSamsungPostProcess.so
+lib/libSamsungPostProcessConvertor.so
+lib/libsamsungSoundbooster_plus.so
+lib/libsecaudioinfo.so
+lib/libsxqk_skia.so
+lib/libtfa98xx.so
+lib/libtinyalsa.so
+lib/libtinycompress.so
+lib/lib_DNSe_EP_ver216c.so
+lib/lib_SamsungRec_06003.so
+lib/lib_SamsungVAD_v01009.so
+lib/lib_SA_GoogleFX_ver124b.so
+lib/lib_soundaliveresampler.so
+lib/lib_SoundAlive_3DPosition_ver202.so
+lib/lib_SoundAlive_play_plus_ver127a.so
+lib/lib_SoundAlive_SRC384_ver300.so
+lib/lib_SoundBooster_ver800.so
+
+# Bluetooth
 bin/prepare_param.sh
-vendor/firmware/bcm4343A0_V0071.0262.hcd
-vendor/firmware/bcm43438A1_V0062.0267.hcd
+vendor/firmware/bcm43455_V0147.0247.hcd
 vendor/lib/libbt-vendor.so
 
 # Camera
-lib/hw/camera.universal7870.so
+lib/hw/camera.universal7870.so:lib/hw/camera.vendor.universal7870.so
+lib/libcsc.so
 lib/libexynoscamera.so
 lib/libexynoscamera3.so
-lib/libseccameracore.so
-lib/libuniplugin.so
-lib/libhwjpeg.so
-lib/libexynosutils.so
-lib/libcsc.so
 lib/libexynosgscaler.so
 lib/libexynosscaler.so
+lib/libexynosutils.so
 lib/libexynosv4l2.so
-lib/libstainkiller.so
 lib/libHpr_RecFace_dl_v1.0.so
 lib/libHpr_RecGAE_cvFeature_v1.0.so
 lib/libHpr_TaskFaceClustering_hierarchical_v1.0.so
+lib/libhwjpeg.so
+lib/libseccameracore.so
+lib/libstainkiller.so
+lib/libstr_capture_core.so
+lib/libstr_capture_interface.so
+lib/libstr_preview_core.so
+lib/libstr_preview_interface.so
+lib/libuniplugin.so
 vendor/firmware/setfile_4h5yc.bin
 vendor/firmware/setfile_imx258.bin
-vendor/lib/libOpenCv.so:lib/libOpenCv.so
-vendor/lib/libHpr_LocLandmark_sdm_v1.0.so
-vendor/lib/libsomp.so:lib/libsomp.so
+vendor/lib/libAutoEnhance.so
 vendor/lib/libHpr_LocFace_mvfd_v1.0.so
+vendor/lib/libHpr_LocLandmark_sdm_v1.0.so
+vendor/lib/libOpenCv.so:lib/libOpenCv.so
+vendor/lib/libPhotoEnhance.so
+vendor/lib/libsomp.so:lib/libsomp.so
+vendor/lib/libyasalgo.so
 
 # DRM
 vendor/lib/mediadrm/libdrmclearkeyplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
 
 # Fingerprint
 lib/libbauthserver.so
@@ -49,53 +84,55 @@ vendor/firmware/fimc_is_lib.bin
 vendor/firmware/mfc_fw.bin
 
 # Mobicore
-bin/mcDriverDaemon|616bd552fbbd56bd05cfe3441e27de92565854fc
 app/FFFFFFFF000000000000000000000001.drbin
 app/mcRegistry/00060308060501020000000000000000.tlbin
 app/mcRegistry/07010000000000000000000000000000.tlbin
 app/mcRegistry/07060000000000000000000000000000.tlbin
 app/mcRegistry/08130000000000000000000000000000.tlbin
+app/mcRegistry/ffffffff00000000000000000000000a.tlbin
 app/mcRegistry/ffffffff00000000000000000000000b.tlbin
 app/mcRegistry/ffffffff00000000000000000000000c.tlbin
 app/mcRegistry/ffffffff00000000000000000000000d.tlbin
 app/mcRegistry/ffffffff00000000000000000000000f.tlbin
-app/mcRegistry/ffffffff00000000000000000000002e.tlbin
-app/mcRegistry/ffffffff00000000000000000000001f.tlbin
 app/mcRegistry/ffffffff000000000000000000000004.tlbin
 app/mcRegistry/ffffffff000000000000000000000005.tlbin
+app/mcRegistry/ffffffff00000000000000000000001f.tlbin
 app/mcRegistry/ffffffff000000000000000000000012.tlbin
 app/mcRegistry/ffffffff000000000000000000000013.tlbin
 app/mcRegistry/ffffffff000000000000000000000016.tlbin
 app/mcRegistry/ffffffff000000000000000000000017.tlbin
 app/mcRegistry/ffffffff000000000000000000000019.tlbin
+app/mcRegistry/ffffffff00000000000000000000002e.tlbin
+app/mcRegistry/ffffffff000000000000000000000030.tlbin
 app/mcRegistry/ffffffff000000000000000000000041.tlbin
 app/mcRegistry/ffffffff000000000000000000000045.tlbin
-app/mcRegistry/ffffffff00000000000000000000000a.tlbin
-app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 app/mcRegistry/ffffffffd00000000000000000000004.tlbin
+app/mcRegistry/ffffffffd00000000000000000000014.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+app/mcRegistry/ffffffffd00000000000000000000017.tlbin
+app/mcRegistry/fffffffff0000000000000000000001b.tlbin
 app/mcRegistry/fffffffff0000000000000000000001e.tlbin
+bin/mcDriverDaemon|616bd552fbbd56bd05cfe3441e27de92565854fc
 vendor/lib/libMcClient.so:lib/libMcClient.so|6e20b880efa7e430beacaacd9b2721ed22398478
 vendor/lib/libMcRegistry.so:lib/libMcRegistry.so
 
 # Radio
-lib/libsec-ril.so|09f007ba0fd0a66b98ccd4c4b8275c703a6a6804
-lib/libsec-ril-dsds.so|baf6ac2e770b0456ad1ad3906c92a4deebd11040
-lib/libsecril-client.so
 lib/libaudio-ril.so
 lib/libreference-ril.so
-lib/librilutils.so
+lib/libsec-ril-dsds.so|baf6ac2e770b0456ad1ad3906c92a4deebd11040
+lib/libsec-ril.so|09f007ba0fd0a66b98ccd4c4b8275c703a6a6804
 lib/libsecnativefeature.so
+lib/libsecril-client.so
 
 # Sensors
 lib/hw/sensors.universal7870.so
-lib/libsensorservice.so
 lib/libsensorlistener.so
 
 # Shim Libs
-lib/libprotobuf-cpp-N.so|f8b1e1d088cd4707393a1fad233f8b06116bc666
 lib/libprotobuf-cpp-fooo.so|5890f0daae5933210aa6b114bafc52ee7e809864
+lib/libprotobuf-cpp-N.so|f8b1e1d088cd4707393a1fad233f8b06116bc666
 
 # Surface Composer
 lib/hw/gralloc.exynos5.so
@@ -107,6 +144,5 @@ etc/srm.bin
 etc/wifi/bcmdhd_apsta.bin
 etc/wifi/bcmdhd_mfg.bin
 etc/wifi/bcmdhd_sta.bin
-etc/wifi/cred.conf
 etc/wifi/nvram_mfg.txt
 etc/wifi/nvram_net.txt
