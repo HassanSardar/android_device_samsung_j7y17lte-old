@@ -27,5 +27,8 @@ LOCAL_PATH := device/samsung/j7y17lte
 # SELinux
 BOARD_SEPOLICY_DIRS += device/samsung/j7y17lte/sepolicy
 
+# Properties
+TARGET_SYSTEM_PROP += $(LOCAL_PATH)/system.prop
+
 # Inherit from the proprietary version
 -include vendor/samsung/j7y17lte/BoardConfigVendor.mk
