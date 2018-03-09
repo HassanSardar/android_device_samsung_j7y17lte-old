@@ -7,6 +7,10 @@ ro.bt.bdaddr_path="/efs/bluetooth/bt_addr"
 
 # Graphics
 ro.opengles.version=196610
+
+# Disable tripple bufferring to reduce lags
+ro.sf.disable_triple_buffer=0
+
 # DPI
 ro.sf.lcd_density=480
 lockscreen.rot_override=true
