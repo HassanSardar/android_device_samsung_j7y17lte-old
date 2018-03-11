@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,22 +14,7 @@
 # limitations under the License.
 #
 
-# Wi-Fi
+# Ramdisk
 PRODUCT_PACKAGES += \
-    macloader \
-    wifiloader \
-    hostapd \
-    libwpa_client \
-    wpa_supplicant \
-    wificond \
-    wifilogd \
-    wlutil \
-    wpa_supplicant.conf \
-    android.hardware.wifi@1.0-service \
-    android.hardware.wifi@1.0 \
-    android.hardware.wifi@1.0-impl
-
-# Wi-Fi Configs
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+    init.wifi.rc \
+    init.target.rc
