@@ -16,7 +16,6 @@
 ** limitations under the License.
 */
 -->
-
 <resources>
     <!-- Flag indicating whether we should enable the automatic brightness in Settings.
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
@@ -80,4 +79,7 @@
 
     <!-- Whether the display blanks itself when transition from a doze to a non-doze state -->
     <bool name="config_displayBlanksAfterDoze">true</bool>
+
+    <!-- For performance and storage reasons, limit the number of fingerprints per user -->
+    <integer name="config_fingerprintMaxTemplatesPerUser">3</integer>
 </resources>
