@@ -4,6 +4,10 @@ on post-fs-data
 
 on boot
 
+# Audio I2C node for TFA amp
+    chmod 0660 /dev/i2c-20
+    chown audio audio /dev/i2c-20
+
 # Permissions for Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
@@ -384,6 +388,14 @@ on boot
 
 # Permissions for Meta event
     chown system radio /sys/class/sensors/sensor_dev/flush
+
+# Permissions for System LSI NFC
+# NFC : Permissions for NFC
+    chmod 0660 /dev/sec-nfc
+    chown nfc nfc /dev/sec-nfc
+
+# NFC : EFS section for NFC Resonant Frequency
+    mkdir /efs/sec_efs/nfc 0700 nfc nfc
 
 # Permissions for Proximity_sensor
     chown system radio /sys/class/sensors/proximity_sensor/raw_data
