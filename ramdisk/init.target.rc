@@ -270,8 +270,8 @@ on boot
     chown system radio /sys/class/camera/rear/rear_caminfo
     chown system radio /sys/class/camera/rear/rear_sensorid
     chown system radio /sys/class/camera/rear/rear_moduleid
-    chown system radio /sys/class/camera/flash/rear_flash
     chown system radio /sys/class/camera/flash/front_flash
+    chown system radio /sys/class/camera/flash/rear_flash
     chown cameraserver system /sys/class/camera/flash/rear_torch_flash
     chown cameraserver system /sys/class/camera/flash/front_torch_flash
     chown system radio /sys/class/camera/front/front_camfw
@@ -308,6 +308,9 @@ on boot
 # Store Gyro cal data
     chown system system /efs/FactoryApp/gyro_cal_data
     chmod 0660 /efs/FactoryApp/gyro_cal_data
+
+    chown system system /dev/esfp0
+    chmod 0660 /dev/esfp0
 
 # Permissions for LCD
     chown system radio /sys/class/lcd/panel/lcd_type
@@ -443,6 +446,15 @@ on boot
 
 # Permission for Wifi firmware_path
     chown wifi wifi /sys/module/dhd/parameters/firmware_path
+
+# Permission for Mobicore
+    chown radio system /dev/mobicore-user
+    chown system system /dev/mobicore
+    chown system system /dev/s5p-smem
+
+    chmod 0666 /dev/mobicore-user
+    chmod 0700 /dev/mobicore
+    chmod 0660 /dev/s5p-smem
 
 # SSWAP
     write /proc/sys/vm/swappiness 130
