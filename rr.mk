@@ -27,6 +27,6 @@ $(call inherit-product, vendor/rr/config/common_full_phone.mk)
 PRODUCT_NAME := rr_j7y17lte
 PRODUCT_DEVICE := j7y17lte
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-J730GM
+PRODUCT_MODEL := SM-J730F
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
